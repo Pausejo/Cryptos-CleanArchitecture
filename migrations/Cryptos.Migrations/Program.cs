@@ -6,7 +6,6 @@ namespace Cryptos.Migrations
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }
