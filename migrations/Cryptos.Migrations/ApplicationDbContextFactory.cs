@@ -13,7 +13,7 @@ namespace Cryptos.Migrations
             var configuration = BuildConfiguration();
 
             var builder = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseSqlite(configuration.GetConnectionString("SqliteConnectionString"), b => b.MigrationsAssembly("Cryptos.Migrations"));            
+                .UseSqlite(configuration.GetConnectionString("SqliteConnectionString"), b => b.MigrationsAssembly(Assembly.GetExecutingAssembly().FullName));            
 
             return new ApplicationDbContext(builder.Options);
         }
@@ -21,7 +21,8 @@ namespace Cryptos.Migrations
         private IConfigurationRoot BuildConfiguration()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory());
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false);
 
             return builder.Build();
         }
